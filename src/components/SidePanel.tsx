@@ -38,6 +38,13 @@ export function SidePanel() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Retrai automaticamente no mobile ao selecionar uma trilha global
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768 && globalActiveRole) {
+      setIsMobileCollapsed(true);
+    }
+  }, [globalActiveRole]);
+
   // Efeito (Hook) para lidar com cliques fora do componente (SidePanel + RoleModal)
   useEffect(() => {
     // Função chamada quando ocorre um evento de mouse down no documento

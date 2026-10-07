@@ -748,7 +748,11 @@ export function SkillMap() {
             </span>
           </button>
         </Panel>
-        <Controls position="bottom-right" showInteractive={false} className="m-4 md:m-6 mb-24 md:mb-20" />
+        <Controls 
+          position="bottom-right" 
+          showInteractive={false} 
+          className="!bottom-[80px] md:!bottom-[24px] !right-[8px] md:!right-[16px]" 
+        />
       </ReactFlow>
     </div>
   );

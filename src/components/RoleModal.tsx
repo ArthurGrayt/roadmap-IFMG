@@ -88,6 +88,10 @@ export function RoleModal({ role, onClose }: RoleModalProps) {
       // Se não está, marca como ativa e traça o caminho
       setActiveRole(role);
       setCareerTrail(skillIds);
+      // No mobile, retrai o modal automaticamente para visualizar o caminho da disciplina
+      if (typeof window !== "undefined" && window.innerWidth < 768 && onClose) {
+        onClose();
+      }
     }
   };
 
@@ -129,6 +133,10 @@ export function RoleModal({ role, onClose }: RoleModalProps) {
               setActiveRole(role);
               setCareerTrail(skillIds);
               setShowRoleDetail(false);
+              // No mobile, retrai o modal automaticamente
+              if (typeof window !== "undefined" && window.innerWidth < 768 && onClose) {
+                onClose();
+              }
             }}
           />
         ) : (
