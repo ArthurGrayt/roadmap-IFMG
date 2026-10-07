@@ -104,16 +104,7 @@ export function RoleModal({ role, onClose }: RoleModalProps) {
       // Transição suave de entrada
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       // Posicionamento absoluto à direita e topo alinhado com o SidePanel
-      className="fixed top-24 left-[356px] z-50 overflow-hidden flex flex-col bg-[#161c23]/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-5 shadow-[0_20px_60px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.08)]"
-      // Dimensões originais travadas via style inline (380px largura por 400px altura)
-      style={{
-        width: "380px",
-        minWidth: "380px",
-        maxWidth: "380px",
-        height: "400px",
-        minHeight: "400px",
-        maxHeight: "400px",
-      }}
+      className="fixed z-50 overflow-hidden flex flex-col bg-[#161c23]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.08)] bottom-0 left-0 right-0 w-full h-[70vh] rounded-t-3xl md:h-[400px] md:min-h-[400px] md:max-h-[400px] md:w-[380px] md:min-w-[380px] md:max-w-[380px] md:rounded-2xl p-5 md:top-24 md:left-[356px] md:bottom-auto md:right-auto"
     >
       {/* Transição de tela entre lista de skills, detalhes da disciplina e detalhes da profissão */}
       <AnimatePresence mode="wait">
@@ -159,15 +150,13 @@ export function RoleModal({ role, onClose }: RoleModalProps) {
                 </h3>
               </div>
 
-              {/* Container para o tooltip de ajuda e botões de alternância */}
-              <div className="flex items-center gap-3">
-                {/* Ícone de interrogação com tooltip de ajuda */}
-                <div className="relative group flex items-center justify-center shrink-0">
-                  {/* Botão de interrogação com fundo arredondado */}
-                  <div className="w-5 h-5 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-help transition-colors text-[11px] font-bold text-zinc-300">
+              {/* Container para botões de ação e visualização */}
+              <div className="flex items-center gap-1 md:gap-3">
+                {/* Ícone de interrogação com tooltip de ajuda (apenas md) */}
+                <div className="relative group hidden md:flex items-center justify-center shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-help transition-colors text-[11px] font-bold text-zinc-300">
                     ?
                   </div>
-                  {/* Tooltip flutuante que aparece ao passar o mouse */}
                   <div className="absolute right-0 -bottom-12 w-44 p-2 bg-[#212930] text-[11px] text-center text-zinc-300 rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-[#28313A] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-tight">
                     Disciplinas necessárias para seguir essa carreira
                   </div>
@@ -178,20 +167,29 @@ export function RoleModal({ role, onClose }: RoleModalProps) {
                   {/* Botão Modo Grid (Cards alinhados lado a lado) */}
                   <button
                     onClick={() => setViewMode("grid")}
-                    className={`p-1 rounded-md transition-colors cursor-pointer ${viewMode === "grid" ? "bg-white/15 text-white shadow-sm" : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"}`}
+                    className={`p-2 md:p-1.5 rounded-md transition-colors cursor-pointer ${viewMode === "grid" ? "bg-white/15 text-white shadow-sm" : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"}`}
                     title="Visualização em Grade"
                   >
-                    <LayoutGrid className="w-3.5 h-3.5" />
+                    <LayoutGrid className="w-4 h-4 md:w-3.5 md:h-3.5" />
                   </button>
                   {/* Botão Modo Lista (Cards expandidos empilhados verticalmente) */}
                   <button
                     onClick={() => setViewMode("list")}
-                    className={`p-1 rounded-md transition-colors cursor-pointer ${viewMode === "list" ? "bg-white/15 text-white shadow-sm" : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"}`}
+                    className={`p-2 md:p-1.5 rounded-md transition-colors cursor-pointer ${viewMode === "list" ? "bg-white/15 text-white shadow-sm" : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"}`}
                     title="Visualização em Lista Expandida"
                   >
-                    <List className="w-3.5 h-3.5 " />
+                    <List className="w-4 h-4 md:w-3.5 md:h-3.5 " />
                   </button>
                 </div>
+                {/* Botão de Fechar para Mobile (já que clicar fora é difícil) */}
+                {onClose && (
+                  <button
+                    onClick={onClose}
+                    className="p-2 md:hidden flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/5"
+                  >
+                    <span className="font-bold text-zinc-300">X</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -206,7 +204,7 @@ export function RoleModal({ role, onClose }: RoleModalProps) {
               {/* Botão 'Ver detalhes' que abre a tela RoleDetailView com os detalhes da carreira */}
               <button
                 onClick={() => setShowRoleDetail(true)}
-                className="px-2.5 py-1 text-[11px] font-semibold text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors cursor-pointer shadow-sm"
+                className="h-11 md:h-auto px-4 md:px-2.5 py-1 text-[11px] font-semibold text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors cursor-pointer shadow-sm"
               >
                 Ver detalhes
               </button>
@@ -215,7 +213,7 @@ export function RoleModal({ role, onClose }: RoleModalProps) {
               <button
                 onClick={toggleCareerSelection}
                 className={cn(
-                  "px-3 py-1 text-[11px] font-bold border rounded-lg transition-all cursor-pointer active:scale-95 ",
+                  "h-11 md:h-auto px-5 md:px-3 py-1 text-[11px] font-bold border rounded-lg transition-all cursor-pointer active:scale-95 flex items-center justify-center",
                   isCareerSelected
                     ? "bg-yellow-400 text-white border-yellow-400/40 "
                     : "text-zinc-950 bg-gradient-to-r from-emerald-400 to-teal-400  border-emerald-400/40 "

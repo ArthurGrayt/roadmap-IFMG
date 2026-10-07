@@ -361,7 +361,7 @@ export function RoleDetailView({
         {/* Botão para voltar e ver as matérias da profissão */}
         <button
           onClick={onBack}
-          className="h-[34px] px-3 rounded-lg font-semibold text-[11px] text-zinc-300 hover:text-white bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] transition-colors cursor-pointer"
+          className="h-11 md:h-[34px] px-3 rounded-lg font-semibold text-[11px] text-zinc-300 hover:text-white bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] transition-colors cursor-pointer"
         >
           Ver Disciplinas
         </button>
@@ -372,7 +372,7 @@ export function RoleDetailView({
             if (onSelectRole) onSelectRole();
             else onBack();
           }}
-          className="flex-1 h-[34px] flex items-center justify-center gap-1.5 px-3 rounded-lg font-extrabold text-[11px] uppercase tracking-wider text-zinc-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 active:scale-[0.98] cursor-pointer shadow-[0_0_18px_rgba(52,211,153,0.3)] transition-all"
+          className="flex-1 h-11 md:h-[34px] flex items-center justify-center gap-1.5 px-3 rounded-lg font-extrabold text-[11px] uppercase tracking-wider text-zinc-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 active:scale-[0.98] cursor-pointer shadow-[0_0_18px_rgba(52,211,153,0.3)] transition-all"
         >
           <Rocket className="w-3.5 h-3.5" />
           <span>Quero aprender</span>

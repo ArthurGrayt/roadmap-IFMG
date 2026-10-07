@@ -20,6 +20,8 @@ import { CAREER_DATA } from "@/data/rolesData";
 export function SidePanel() {
   // Estado para controlar qual item da sanfona (accordion) está aberto
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  // Estado para controlar se o painel está recolhido no mobile
+  const [isMobileCollapsed, setIsMobileCollapsed] = useState(false);
   // Estado para armazenar o papel ativo selecionado por clique e sua posição vertical
   const [activeRole, setActiveRole] = useState<{ name: string; top: number } | null>(null);
 
@@ -69,16 +71,28 @@ export function SidePanel() {
         animate={{ x: 0, opacity: 1 }}
         // Configuração de transição com efeito de mola suave
         transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.2 }}
-        // Estilização Tailwind: fixado na esquerda (left-6), flutuante com blur glassmorphic
-        className="fixed left-6 top-24 z-40 w-80 max-h-[calc(100vh-8rem)] flex flex-col bg-[#1A2128]/80 backdrop-blur-md border border-[#28313A] rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)] overflow-hidden"
+        // Estilização Tailwind: bottom sheet no mobile, painel esquerdo no desktop
+        className={cn(
+          "fixed z-40 flex flex-col bg-[#1A2128]/95 backdrop-blur-md border border-[#28313A] shadow-[0_0_30px_rgba(0,0,0,0.5)] overflow-hidden bottom-0 left-0 w-full rounded-t-3xl transition-all duration-300 md:left-6 md:top-24 md:bottom-auto md:w-80 md:max-h-[calc(100vh-8rem)] md:bg-[#1A2128]/80 md:rounded-2xl",
+          isMobileCollapsed ? "max-h-[64px]" : "max-h-[45vh]"
+        )}
       >
         {/* Cabeçalho do painel */}
-        <div className="p-5 border-b border-[#28313A]/50 bg-[#212930]/80">
+        <div 
+          className="p-4 md:p-5 border-b border-[#28313A]/50 bg-[#212930]/80 flex items-center justify-between cursor-pointer md:cursor-default shrink-0 h-[64px]"
+          onClick={() => window.innerWidth < 768 && setIsMobileCollapsed(!isMobileCollapsed)}
+        >
           {/* Título com ícone */}
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+          <h2 className="text-[17px] md:text-lg font-bold text-white flex items-center gap-2">
             {/* Texto do título */}
             Escolha sua área de atuação
           </h2>
+          {/* Ícone de colapso apenas no mobile */}
+          <button className="md:hidden p-1.5 bg-white/5 rounded-lg border border-white/5 text-zinc-300">
+            <motion.div animate={{ rotate: isMobileCollapsed ? 180 : 0 }} transition={{ duration: 0.3 }}>
+              <ChevronDown className="w-5 h-5" />
+            </motion.div>
+          </button>
         </div>
 
         {/* Conteúdo com rolar vertical */}

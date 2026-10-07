@@ -39,7 +39,7 @@ export function OnboardingModal() {
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="bg-[#1A2128] border border-white/10 p-8 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.8)] w-full max-w-md flex flex-col items-center"
+          className="bg-[#1A2128] border border-white/10 p-6 md:p-8 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.8)] w-[92%] max-w-md flex flex-col items-center"
         >
           <h2 className="text-3xl font-bold text-white mb-2 text-center">
             Bem-vindo(a) ao RoadMap IFMG!

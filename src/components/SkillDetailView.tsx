@@ -256,7 +256,7 @@ export function SkillDetailView({ skill, onBack, onClose }: SkillDetailViewProps
       <div className="pt-2 mt-auto border-t border-white/[0.08] flex justify-center shrink-0">
         <button
           onClick={handleFindSkill}
-          className="group relative w-full h-[35px] flex items-center justify-center gap-2 px-4 rounded-lg font-extrabold text-[11.5px] uppercase tracking-wider text-zinc-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 active:scale-[0.98] cursor-pointer shadow-[0_0_20px_rgba(52,211,153,0.3)] transition-all"
+          className="group relative w-full h-11 md:h-[35px] flex items-center justify-center gap-2 px-4 rounded-lg font-extrabold text-[11.5px] uppercase tracking-wider text-zinc-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 active:scale-[0.98] cursor-pointer shadow-[0_0_20px_rgba(52,211,153,0.3)] transition-all"
         >
           {/* Ícone de mira com tamanho calibrado */}
           <Crosshair className="w-3.5 h-3.5" />

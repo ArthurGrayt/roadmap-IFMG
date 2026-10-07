@@ -43,8 +43,8 @@ export function RoleSkillsView({ skills, viewMode, onSkillClick }: RoleSkillsVie
 
   // Renderiza o container com altura fixa de 220px e barra de rolagem customizada
   return (
-    // Container externo com altura travada e largura completa
-    <div className="relative flex flex-col h-[220px] max-h-[220px] shrink-0 w-full select-none">
+    // Container externo com altura flexível no mobile e fixa no desktop
+    <div className="relative flex flex-col flex-1 h-full max-h-[50vh] md:h-[220px] md:max-h-[220px] md:flex-none shrink-0 w-full select-none">
       {/* Contêiner de rolagem suave para navegar entre as disciplinas */}
       <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 h-full w-full">
         {/* Animação suave na transição entre o modo Grade e Lista */}
@@ -71,7 +71,7 @@ export function RoleSkillsView({ skills, viewMode, onSkillClick }: RoleSkillsVie
                   <div
                     key={skill.id}
                     className={cn(
-                      "relative group cursor-pointer w-[42px] h-[42px] flex items-center justify-center flex-shrink-0 transition-opacity duration-150",
+                      "relative group cursor-pointer w-[44px] h-[44px] flex items-center justify-center flex-shrink-0 transition-opacity duration-150",
                       isFaded ? "opacity-30" : "opacity-100", // Atenuação sem delay assíncrono
                       hoveredSkillId === skill.id ? "z-50" : "z-10" // Eleva z-index no hover
                     )}

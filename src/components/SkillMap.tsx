@@ -22,6 +22,7 @@ import { SKILLS, SkillId } from "@/data/skills-config";
 import { ALL_SKILLS, CAREER_DATA } from "@/data/rolesData";
 import layoutData from "@/data/skill-layout.json";
 import { useSkillStore } from "@/store/useSkillStore";
+import { User, Maximize2, Minimize2 } from "lucide-react";
 
 interface DiamondNodeData extends Record<string, unknown> {
   label: string;
@@ -725,21 +726,29 @@ export function SkillMap() {
         maxZoom={1.5}
         fitView
       >
-        <Panel position="top-right" className="m-6 flex gap-3">
+        <Panel position="top-right" className="m-3 md:m-6 flex gap-2 md:gap-3">
           <button
             onClick={goToProfile}
-            className="px-5 py-2.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.1)] rounded-xl backdrop-blur-xl hover:bg-emerald-500/30 hover:text-white transition-all font-semibold text-sm flex items-center gap-2"
+            className="px-3 py-2 md:px-5 md:py-2.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.1)] rounded-xl backdrop-blur-xl hover:bg-emerald-500/30 hover:text-white transition-all font-semibold text-sm flex items-center gap-2"
           >
-            Ir para o Perfil
+            <User className="w-4 h-4 md:w-5 md:h-5" />
+            <span className="hidden md:inline">Ir para o Perfil</span>
           </button>
           <button
             onClick={toggleExpandAll}
-            className="px-5 py-2.5 bg-[#1A2128]/80 text-white border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] rounded-xl backdrop-blur-xl hover:bg-white/10 hover:border-white/20 transition-all font-semibold text-sm flex items-center gap-2"
+            className="px-3 py-2 md:px-5 md:py-2.5 bg-[#1A2128]/80 text-white border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] rounded-xl backdrop-blur-xl hover:bg-white/10 hover:border-white/20 transition-all font-semibold text-sm flex items-center gap-2"
           >
-            {isGlobalExpanded ? "Recolher Cards" : "Expandir Cards"}
+            {isGlobalExpanded ? (
+              <Minimize2 className="w-4 h-4 md:w-5 md:h-5" />
+            ) : (
+              <Maximize2 className="w-4 h-4 md:w-5 md:h-5" />
+            )}
+            <span className="hidden md:inline">
+              {isGlobalExpanded ? "Recolher Cards" : "Expandir Cards"}
+            </span>
           </button>
         </Panel>
-        <Controls position="bottom-right" showInteractive={false} className="m-6 mb-20" />
+        <Controls position="bottom-right" showInteractive={false} className="m-4 md:m-6 mb-24 md:mb-20" />
       </ReactFlow>
     </div>
   );
